@@ -137,37 +137,50 @@ void PhysicsLoop( void )
   glutSwapBuffers( );
 }
 
-int main(int argc, char** argv)
+//int main(int argc, char** argv)
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-  glutInit(&argc, argv);
-  glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
-  glutInitWindowSize( 800, 600 );
-  glutCreateWindow( "PhyEngine" );
-  glutDisplayFunc( PhysicsLoop );
-  glutKeyboardFunc( Keyboard );
-  glutMouseFunc( Mouse );
-  glutIdleFunc( PhysicsLoop );
+	//glutInit(&argc, argv);
 
-  glMatrixMode( GL_PROJECTION );
-  glPushMatrix( );
-  glLoadIdentity( );
-  gluOrtho2D( 0, 80, 60, 0 );
-  glMatrixMode( GL_MODELVIEW );
-  glPushMatrix( );
-  glLoadIdentity( );
+	LPWSTR *szArgList;
+	int argCount;
 
-  Circle c( 5.0f );
-  Body *b = scene.Add( &c, 40, 40 );
-  b->SetStatic( );
+	szArgList = CommandLineToArgvW(GetCommandLine(), &argCount);
+	if (szArgList == NULL)
+	{
+		MessageBox(NULL, L"Unable to parse command line", L"Error", MB_OK);
+		return 1;
+	}
 
-  PolygonShape poly;
-  poly.SetBox( 30.0f, 1.0f );
-  b = scene.Add( &poly, 40, 55 );
-  b->SetStatic( );
-  b->SetOrient( 0 );
+	glutInit(&argCount, (char**)szArgList);
+	glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
+	glutInitWindowSize( 800, 600 );
+	glutCreateWindow( "PhyEngine" );
+	glutDisplayFunc( PhysicsLoop );
+	glutKeyboardFunc( Keyboard );
+	glutMouseFunc( Mouse );
+	glutIdleFunc( PhysicsLoop );
 
-  srand( 1 );
-  glutMainLoop( );
+	glMatrixMode( GL_PROJECTION );
+	glPushMatrix( );
+	glLoadIdentity( );
+	gluOrtho2D( 0, 80, 60, 0 );
+	glMatrixMode( GL_MODELVIEW );
+	glPushMatrix( );
+	glLoadIdentity( );
 
-  return 0;
+	Circle c( 5.0f );
+	Body *b = scene.Add( &c, 40, 40 );
+	b->SetStatic( );
+
+	PolygonShape poly;
+	poly.SetBox( 30.0f, 1.0f );
+	b = scene.Add( &poly, 40, 55 );
+	b->SetStatic( );
+	b->SetOrient( 0 );
+
+	srand( 1 );
+	glutMainLoop( );
+
+	return 0;
 }

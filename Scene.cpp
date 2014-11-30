@@ -81,9 +81,10 @@ void Scene::Step( void )
     contacts[i].Initialize( );
 
   // Solve collisions
-  for(uint32 j = 0; j < m_iterations; ++j)
-    for(uint32 i = 0; i < contacts.size( ); ++i)
-      contacts[i].ApplyImpulse( );
+  if (contacts.size())
+	for(uint32 j = 0; j < m_iterations; ++j)
+		for(uint32 i = 0; i < contacts.size( ); ++i)
+			contacts[i].ApplyImpulse( );
 
   // Integrate velocities
   for(uint32 i = 0; i < bodies.size( ); ++i)
