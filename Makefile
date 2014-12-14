@@ -1,4 +1,4 @@
-CXXFLAGS=-O3 -std=c++0x -Wall
+CXXFLAGS=-O3 -std=c++0x -Wall -I"/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers/" -L/opt/local/lib
 
 SOURCES= $(wildcard *.cpp)
 

@@ -137,11 +137,12 @@ void PhysicsLoop( void )
   glutSwapBuffers( );
 }
 
-//int main(int argc, char** argv)
-int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int main(int argc, char** argv)
+//int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	//glutInit(&argc, argv);
+	glutInit(&argc, argv);
 
+	/*
 	LPWSTR *szArgList;
 	int argCount;
 
@@ -151,8 +152,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		MessageBox(NULL, L"Unable to parse command line", L"Error", MB_OK);
 		return 1;
 	}
+	*/
 
-	glutInit(&argCount, (char**)szArgList);
+	//glutInit(&argCount, (char**)szArgList);
 	glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
 	glutInitWindowSize( 800, 600 );
 	glutCreateWindow( "PhyEngine" );
